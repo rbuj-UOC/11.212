@@ -31,7 +31,17 @@ const app = createApp({
         <h2>{{name}}</h2>
         <button @click="updateName">Change name</button>
 
-        <ul>
+        <button @click="showGrades">Toggle visibility Grades</button>
+
+        <ul v-if="isVisibleGrades">
+            <li v-for="student in gradesData" :key="student.id">
+                {{ student.name }}: {{ student.grade }}
+            </li>
+        </ul>
+
+        <hr>
+
+        <ul v-show="isVisibleGrades">
             <li v-for="student in gradesData" :key="student.id">
                 {{ student.name }}: {{ student.grade }}
             </li>
@@ -59,16 +69,26 @@ const app = createApp({
             console.log("Change value Robert to Antoni");
         }
 
+        // Paso 6.1: variable para mostrar u ocultar elemento
+        const isVisibleGrades = ref(true);
+
+        // Paso 6.2: Método que modifica el valor de isVisibleGrades
+        const showGrades = () => {
+            isVisibleGrades.value = !isVisibleGrades.value;
+        };
+
         return {
             name,
-            // Paso 4
-            // Retornamos la función updateName para que sea accesible desde el
+            // Paso 4: Exponemos la nueva función para que esté disponible en el
             // template
             updateName,
-            // Paso 5.1
-            // Exponemos el json de datos para que estén disponibles en el
-            // template
-            gradesData
+            // Paso 5.2: Exponemos el json de datos para que esté disponible en
+            // el template
+            gradesData,
+            // Paso 6.3: Exponemos la variable y el método para que estén
+            // disponibles en el template
+            isVisibleGrades,
+            showGrades,
         }
     }
 });
