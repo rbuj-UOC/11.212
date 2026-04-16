@@ -12,26 +12,28 @@ const gradesData = [
     { id: 10, name: "Julia Roberts", grade: 7.9 },
 ];
 
-console.log('Hello world!');
+// Paso 1: Mensaje por consola, validamos que se ejecuta app.js des de nuestro
+// index.html
+console.log("Hello world");
 console.log("Hello world from script");
 
-// Paso 2
-// console.log del objeto Vue
+// Paso 2: Console log del objeto Vue
 console.log("Vue object --> ", Vue);
 
+// Paso 2.3: Creamos la aplicación Vue
+// Paso 3.3: Añadimos ref para poder definir variables reactivas
+// Paso 7: Añadimos computed para poder crear variables computadas
+const { createApp, ref, computed } = Vue;
 
-// Paso 2.3
-// Creamos la aplicación Vue
-// Paso 3.3
-// Añadimos ref para poder definir variables reactivas
-const { createApp, ref } = Vue;
 const app = createApp({
     template: `
         <h1>Hello world from Vue App!</h1>
-        <h2>{{name}}</h2>
+        <h2>{{ name }}</h2>
         <button @click="updateName">Change name</button>
 
         <button @click="showGrades">Toggle visibility Grades</button>
+
+        <hr>
 
         <ul v-if="isVisibleGrades">
             <li v-for="student in gradesData" :key="student.id">
@@ -46,6 +48,10 @@ const app = createApp({
                 {{ student.name }}: {{ student.grade }}
             </li>
         </ul>
+
+        <hr>
+
+        <p><strong>Approved students count:</strong> {{ approvedCount }}</p>
     `,
     // Paso 3.1
     // Añadimos la función setup, definido la variable name y la retornamos
@@ -77,6 +83,11 @@ const app = createApp({
             isVisibleGrades.value = !isVisibleGrades.value;
         };
 
+        // Paso 7: propiedad computada
+        const approvedCount = computed(
+            () => gradesData.filter((s) => s.grade >= 5).length
+        );
+
         return {
             name,
             // Paso 4: Exponemos la nueva función para que esté disponible en el
@@ -89,6 +100,9 @@ const app = createApp({
             // disponibles en el template
             isVisibleGrades,
             showGrades,
+            // Paso 7: Exponemos la variable computada para que esté disponible
+            // en el template
+            approvedCount,
         }
     }
 });
