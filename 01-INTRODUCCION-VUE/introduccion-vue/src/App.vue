@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import PrimerComponenteSFC from './components/PrimerComponenteSFC.vue';
+
 console.log('Hello world from script (Vite + TS)');
 </script>
 
@@ -6,6 +8,8 @@ console.log('Hello world from script (Vite + TS)');
   <main style="padding: 1rem">
     <h1>Hello world from Vue App (Vite + TS)</h1>
     <p>Hello world from template</p>
+
+    <PrimerComponenteSFC />
   </main>
 </template>
 
