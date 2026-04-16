@@ -18,7 +18,13 @@ const app = createApp({
     // Añadimos la función setup, definido la variable name y la retornamos
     // para que sea accesible desde el template
     setup() {
-        const name = "Robert";
+        let name = "Robert";
+        // Paso 3.2
+        // Modificamos el valor de name después de 2 segundos
+        setTimeout(() => {
+            name = "Antoni";
+            console.log("Change value Robert to Antoni");
+        }, 2000);
         return {
             name
         }
