@@ -18,7 +18,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const count = ref<number>(0)
+const props = withDefaults(defineProps<{ initial?: number }>(), { initial: 0 })
+
+const count = ref<number>(props.initial)
 
 function increment() {
   count.value++
