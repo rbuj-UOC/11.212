@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "title": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "duration": "5:55",
+        "isTopHit": true
+    },
+    {
+        "id": 2,
+        "title": "Blinding Lights",
+        "artist": "The Weeknd",
+        "duration": "3:20",
+        "isTopHit": true
+    },
+    {
+        "id": 3,
+        "title": "Shape of You",
+        "artist": "Ed Sheeran",
+        "duration": "3:53",
+        "isTopHit": false
+    },
+    {
+        "id": 4,
+        "title": "Dance Monkey",
+        "artist": "Tones and I",
+        "duration": "3:29",
+        "isTopHit": false
+    },
+    {
+        "id": 5,
+        "title": "Bad Guy",
+        "artist": "Billie Eilish",
+        "duration": "3:14",
+        "isTopHit": true
+    },
+    {
+        "id": 6,
+        "title": "Watermelon Sugar",
+        "artist": "Harry Styles",
+        "duration": "2:54",
+        "isTopHit": false
+    },
+    {
+        "id": 7,
+        "title": "Levitating",
+        "artist": "Dua Lipa",
+        "duration": "3:23",
+        "isTopHit": true
+    },
+    {
+        "id": 8,
+        "title": "Stay",
+        "artist": "The Kid LAROI, Justin Bieber",
+        "duration": "2:21",
+        "isTopHit": true
+    },
+    {
+        "id": 9,
+        "title": "Good 4 U",
+        "artist": "Olivia Rodrigo",
+        "duration": "2:58",
+        "isTopHit": true
+    },
+    {
+        "id": 10,
+        "title": "Save Your Tears",
+        "artist": "The Weeknd",
+        "duration": "3:35",
+        "isTopHit": false
+    },
+    {
+        "id": 11,
+        "title": "Astronaut In The Ocean",
+        "artist": "Masked Wolf",
+        "duration": "2:12",
+        "isTopHit": false
+    },
+    {
+        "id": 12,
+        "title": "Kiss Me More",
+        "artist": "Doja Cat ft. SZA",
+        "duration": "3:28",
+        "isTopHit": true
+    },
+    {
+        "id": 13,
+        "title": "Montero",
+        "artist": "Lil Nas X",
+        "duration": "2:00",
+        "isTopHit": true
+    },
+    {
+        "id": 14,
+        "title": "Peaches",
+        "artist": "Justin Bieber ft. Daniel Caesar, Giveon",
+        "duration": "3:18",
+        "isTopHit": true
+    },
+    {
+        "id": 15,
+        "title": "Butter",
+        "artist": "BTS",
+        "duration": "2:42",
+        "isTopHit": true
+    },
+    {
+        "id": 16,
+        "title": "Stay With Me",
+        "artist": "Sam Smith",
+        "duration": "2:52",
+        "isTopHit": false
+    },
+    {
+        "id": 17,
+        "title": "Uptown Funk",
+        "artist": "Mark Ronson ft. Bruno Mars",
+        "duration": "4:30",
+        "isTopHit": true
+    },
+    {
+        "id": 18,
+        "title": "Shallow",
+        "artist": "Lady Gaga, Bradley Cooper",
+        "duration": "3:37",
+        "isTopHit": false
+    },
+    {
+        "id": 19,
+        "title": "Don't Start Now",
+        "artist": "Dua Lipa",
+        "duration": "3:03",
+        "isTopHit": true
+    },
+    {
+        "id": 20,
+        "title": "Flowers",
+        "artist": "Miley Cyrus",
+        "duration": "3:20",
+        "isTopHit": true
+    }
+]
