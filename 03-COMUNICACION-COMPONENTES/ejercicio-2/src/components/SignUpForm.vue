@@ -65,7 +65,7 @@ watch(
     </div>
 
     <div class="mb-3">
-      <label for="name" class="form-label fw-semibold">Nombre</label>
+      <label for="name" class="form-label fw-semibold required-field">Nombre</label>
       <input
         id="name"
         v-model="form.name"
@@ -79,7 +79,7 @@ watch(
     </div>
 
     <div class="mb-3">
-      <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+      <label for="email" class="form-label fw-semibold required-field">Correo electrónico</label>
       <input
         id="email"
         v-model="form.email"
@@ -93,7 +93,7 @@ watch(
     </div>
 
     <div class="mb-4">
-      <label for="password" class="form-label fw-semibold">Contraseña</label>
+      <label for="password" class="form-label fw-semibold required-field">Contraseña</label>
       <input
         id="password"
         v-model="form.password"
@@ -128,5 +128,10 @@ watch(
 .signup-card {
   background: #ffffff;
   border-color: #e4e7ec !important;
+}
+
+.required-field::after {
+  content: ' *';
+  color: #dc3545;
 }
 </style>
