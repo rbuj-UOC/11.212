@@ -4,6 +4,7 @@ import EjemploReactividad from './components/EjemploReactividad.vue';
 import EjemploEventoClick from './components/EjemploEventoClick.vue';
 import EjemploLista from './components/EjemploLista.vue';
 import EjemploVisibilidad from './components/EjemploVisibilidad.vue';
+import EjemploVariableComputada from './components/EjemploVariableComputada.vue';
 
 console.log('Hello world from script (Vite + TS)');
 </script>
@@ -12,7 +13,6 @@ console.log('Hello world from script (Vite + TS)');
   <main style="padding: 1rem">
     <h1>Hello world from Vue App (Vite + TS)</h1>
     <p>Hello world from template</p>
-
     <PrimerComponenteSFC />
     <hr />
     <EjemploReactividad />
@@ -22,6 +22,8 @@ console.log('Hello world from script (Vite + TS)');
     <EjemploLista />
     <hr />
     <EjemploVisibilidad />
+    <hr />
+    <EjemploVariableComputada />
   </main>
 </template>
 
