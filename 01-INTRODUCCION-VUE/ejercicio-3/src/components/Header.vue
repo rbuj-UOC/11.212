@@ -3,30 +3,20 @@ defineOptions({ name: 'PageHeader' })
 </script>
 
 <template>
-  <header class="header">
-    <h1 class="header__title">Listado de películas</h1>
-    <p class="header__subtitle">Consulta de los datos de tus películas favoritas</p>
+  <header class="container text-center pt-3 pt-md-4 pb-0">
+    <h1 class="display-4 fw-bold mb-3">Listado de películas</h1>
+    <p class="lead subtitle mb-0">Consulta de los datos de tus películas favoritas</p>
   </header>
 </template>
 
 <style scoped>
-.header {
-  width: min(1100px, calc(100% - 2rem));
-  margin: 0 auto;
-  padding: 3rem 0 1.5rem;
-  text-align: center;
-}
-
-.header__title {
-  margin: 0;
-  font-size: clamp(2.6rem, 4vw, 4.4rem);
-  line-height: 0.95;
-}
-
-.header__subtitle {
+.lead {
   max-width: 48rem;
-  margin: 1rem auto 0;
-  color: rgba(246, 241, 255, 0.78);
-  font-size: 1.05rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subtitle {
+  color: #b8c2d6;
 }
 </style>

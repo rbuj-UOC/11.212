@@ -3,22 +3,25 @@ defineOptions({ name: 'PageFooter' })
 </script>
 
 <template>
-  <footer class="footer">
-    <p class="footer__text">Mis listas de cine</p>
+  <footer class="container text-center py-4">
+    <ul class="footer-list mb-0">
+      <li class="footer-text small">© 2026 Robert Buj</li>
+      <li class="footer-text small">Mis listas de cine</li>
+    </ul>
   </footer>
 </template>
 
 <style scoped>
-.footer {
-  width: min(1100px, calc(100% - 2rem));
-  margin: 0 auto;
-  padding: 1.5rem 0 2rem;
-  text-align: center;
+.footer-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
-.footer__text {
-  margin: 0;
-  color: rgba(246, 241, 255, 0.6);
-  font-size: 0.92rem;
+.footer-text {
+  color: #94a3b8;
 }
 </style>
