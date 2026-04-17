@@ -17,9 +17,11 @@
 
 <script setup lang="ts">
 import type { CounterProps } from '@/models/counter-props.interface'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<CounterProps>(), { initial: 0, step: 1 })
+
+const emit = defineEmits<{ (e: 'update', value: number): void }>()
 
 const count = ref<number>(props.initial)
 
@@ -30,6 +32,8 @@ function increment() {
 function decrement() {
   count.value -= props.step
 }
+
+watch(count, (v) => emit('update', v))
 
 const square = computed(() => count.value * count.value)
 
