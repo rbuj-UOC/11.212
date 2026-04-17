@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PrimerComponenteSFC from './components/PrimerComponenteSFC.vue';
 import EjemploReactividad from './components/EjemploReactividad.vue';
+import EjemploEventoClick from './components/EjemploEventoClick.vue';
 
 console.log('Hello world from script (Vite + TS)');
 </script>
@@ -11,7 +12,10 @@ console.log('Hello world from script (Vite + TS)');
     <p>Hello world from template</p>
 
     <PrimerComponenteSFC />
+    <hr />
     <EjemploReactividad />
+    <hr />
+    <EjemploEventoClick />
   </main>
 </template>
 
