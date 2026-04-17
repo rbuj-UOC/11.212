@@ -16,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import { useCounterMath } from '@/composables/useCounterMath'
 import type { CounterProps } from '@/models/counter-props.interface'
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<CounterProps>(), { initial: 0, step: 1 })
 
@@ -35,16 +36,7 @@ function decrement() {
 
 watch(count, (v) => emit('update', v))
 
-const square = computed(() => count.value * count.value)
-
-function factorialOf(n: number): number {
-  if (n < 0) return NaN
-  let res = 1
-  for (let i = 2; i <= n; i++) res *= i
-  return res
-}
-
-const factorial = computed(() => factorialOf(count.value))
+const { square, factorial } = useCounterMath(count)
 </script>
 
 <style scoped>
