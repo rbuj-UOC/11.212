@@ -4,8 +4,8 @@
       <h2>Contador</h2>
       <p :class="{ big: count >= 10 }">Valor: {{ count }}</p>
       <div class="row">
-        <button class="btn" @click="decrement">-1</button>
-        <button class="btn" @click="increment">+1</button>
+        <button class="btn" @click="decrement">-{{ props.step }}</button>
+        <button class="btn" @click="increment">+{{ props.step }}</button>
       </div>
       <hr />
       <h3>Operaciones</h3>
@@ -19,16 +19,16 @@
 import type { CounterProps } from '@/models/counter-props.interface'
 import { computed, ref } from 'vue'
 
-const props = withDefaults(defineProps<CounterProps>(), { initial: 0 })
+const props = withDefaults(defineProps<CounterProps>(), { initial: 0, step: 1 })
 
 const count = ref<number>(props.initial)
 
 function increment() {
-  count.value++
+  count.value += props.step
 }
 
 function decrement() {
-  count.value--
+  count.value -= props.step
 }
 
 const square = computed(() => count.value * count.value)

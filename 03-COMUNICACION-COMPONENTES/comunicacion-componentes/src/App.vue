@@ -6,7 +6,7 @@ import CounterComponent from './components/CounterComponent.vue'
   <main class="container">
     <h1 v-once>Comunicación entre componentes</h1>
     <CounterComponent />
-    <CounterComponent :initial="5" />
+    <CounterComponent :initial="5" :step="2" />
     <CounterComponent :initial="14" />
   </main>
 </template>
