@@ -6,13 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Grade } from '@/models/grade.interface';
 import { computed, ref } from 'vue';
-
-interface Grade {
-  id: number;
-  name: string;
-  grade: number;
-}
 
 const gradesData = ref<Grade[]>([
   { id: 1, name: 'Alice Johnson', grade: 8.5 },
