@@ -23,7 +23,7 @@ const showAlert = (type: NonNullable<AlertProps['type']>, message: string) => {
   <main class="container py-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
-        <h1 class="mb-2 text-center">Componente reutilizable</h1>
+        <h1 class="mb-4 text-center">Componente reutilizable</h1>
 
         <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
           <button
