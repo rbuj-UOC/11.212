@@ -16,9 +16,10 @@
 </template>
 
 <script setup lang="ts">
+import type { CounterProps } from '@/models/counter-props.interface'
 import { computed, ref } from 'vue'
 
-const props = withDefaults(defineProps<{ initial?: number }>(), { initial: 0 })
+const props = withDefaults(defineProps<CounterProps>(), { initial: 0 })
 
 const count = ref<number>(props.initial)
 
