@@ -2,6 +2,8 @@
 import PrimerComponenteSFC from './components/PrimerComponenteSFC.vue';
 import EjemploReactividad from './components/EjemploReactividad.vue';
 import EjemploEventoClick from './components/EjemploEventoClick.vue';
+import EjemploLista from './components/EjemploLista.vue';
+import EjemploVisibilidad from './components/EjemploVisibilidad.vue';
 
 console.log('Hello world from script (Vite + TS)');
 </script>
@@ -16,6 +18,10 @@ console.log('Hello world from script (Vite + TS)');
     <EjemploReactividad />
     <hr />
     <EjemploEventoClick />
+    <hr />
+    <EjemploLista />
+    <hr />
+    <EjemploVisibilidad />
   </main>
 </template>
 
