@@ -1,3 +1,4 @@
+import { authGuard } from "@/modules/auth/guards/authGuard";
 import HomePage from "@/modules/landing/pages/HomePage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -26,6 +27,7 @@ const router = createRouter({
           path: "tasks",
           name: "tasks",
           component: () => import("@/modules/tasks/pages/TasksList.vue"),
+          beforeEnter: [authGuard],
         },
         {
           path: "tasks/:id",
