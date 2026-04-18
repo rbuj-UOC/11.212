@@ -22,6 +22,17 @@ const router = createRouter({
           name: "contact",
           component: () => import("@/modules/landing/pages/ContactPage.vue"),
         },
+        {
+          path: "tasks",
+          name: "tasks",
+          component: () => import("@/modules/tasks/pages/TasksList.vue"),
+        },
+        {
+          path: "tasks/:id",
+          name: "task-detail",
+          component: () => import("@/modules/tasks/pages/TaskDetail.vue"),
+          props: true,
+        },
       ],
     },
     {

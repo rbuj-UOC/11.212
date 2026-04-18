@@ -30,6 +30,9 @@ import { RouterLink } from "vue-router";
             <RouterLink to="/" class="nav-link" exact-active-class="active">Home</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink to="/tasks" class="nav-link" exact-active-class="active">Tasks</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink to="/about" class="nav-link" exact-active-class="active">About</RouterLink>
           </li>
           <li class="nav-item">
