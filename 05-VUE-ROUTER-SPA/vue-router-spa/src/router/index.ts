@@ -6,17 +6,23 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: HomePage,
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: () => import("@/modules/landing/pages/AboutPage.vue"),
-    },
-    {
-      path: "/contact",
-      name: "contact",
-      component: () => import("@/modules/landing/pages/ContactPage.vue"),
+      component: () => import("@/modules/landing/layouts/LandingLayout.vue"),
+      children: [
+        {
+          path: "/",
+          component: HomePage,
+        },
+        {
+          path: "/about",
+          name: "about",
+          component: () => import("@/modules/landing/pages/AboutPage.vue"),
+        },
+        {
+          path: "/contact",
+          name: "contact",
+          component: () => import("@/modules/landing/pages/ContactPage.vue"),
+        },
+      ],
     },
     {
       path: "/auth",
