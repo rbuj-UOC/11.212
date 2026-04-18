@@ -2,7 +2,18 @@
   <form class="card" @submit.prevent="onSubmit">
     <h2>Primer formulario</h2>
     <label for="email">Email: </label>
-    <input type="text" v-model="email" v-bind="emailAttrs" placeholder="tu@email.com" />
+    <input
+      id="email"
+      type="text"
+      v-model="email"
+      v-bind="emailAttrs"
+      placeholder="tu@email.com"
+      :class="{ invalid: !!errors.email }"
+      :aria-invalid="!!errors.email"
+      aria-describedby="email-error"
+    />
+    <p v-if="errors.email" id="email-error" class="error">{{ errors.email }}</p>
+
     <button class="btn" type="submit">Enviar</button>
     <pre>{{ values }}</pre>
     <pre>{{ errors }}</pre>
@@ -40,5 +51,16 @@ pre {
   background: #f7f7f7;
   padding: 0.5rem;
   border-radius: 0.5rem;
+}
+
+.error {
+  color: #c00;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.invalid {
+  outline: 2px solid #e33;
+  border-radius: 6px;
 }
 </style>
