@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import PrimerFormulario from '@/components/PrimerFormulario.vue'
-import RegistroFormulario from './components/RegistroFormulario.vue'
+import RegistroFormulario from "./components/RegistroFormulario.vue";
 </script>
 
 <template>

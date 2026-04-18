@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'PageHeader' })
+defineOptions({ name: "PageHeader" });
 </script>
 
 <template>

@@ -1,93 +1,93 @@
 <script setup lang="ts">
-import { ErrorMessage, Field, FieldArray, useForm } from 'vee-validate'
-import type { GenericObject, SubmissionHandler } from 'vee-validate'
-import type { MetodoPago } from '../models/metodo-pago'
-import type { PedidoForm } from '../models/pedido-form'
-import * as yup from 'yup'
+import { ErrorMessage, Field, FieldArray, useForm } from "vee-validate";
+import type { GenericObject, SubmissionHandler } from "vee-validate";
+import type { MetodoPago } from "../models/metodo-pago";
+import type { PedidoForm } from "../models/pedido-form";
+import * as yup from "yup";
 
 const schema = yup.object({
   nombreCompleto: yup
     .string()
-    .required('El nombre completo es obligatorio.')
-    .min(3, 'El nombre debe tener al menos 3 caracteres.')
-    .max(100, 'El nombre no puede superar los 100 caracteres.'),
+    .required("El nombre completo es obligatorio.")
+    .min(3, "El nombre debe tener al menos 3 caracteres.")
+    .max(100, "El nombre no puede superar los 100 caracteres."),
   correo: yup
     .string()
-    .required('El correo electrónico es obligatorio.')
-    .email('Introduce un correo electrónico válido.'),
+    .required("El correo electrónico es obligatorio.")
+    .email("Introduce un correo electrónico válido."),
   metodoPago: yup
     .mixed<MetodoPago>()
-    .oneOf(['Tarjeta', 'Transferencia', 'Bizum'], 'Selecciona un método de pago válido.')
-    .required('El método de pago es obligatorio.'),
+    .oneOf(["Tarjeta", "Transferencia", "Bizum"], "Selecciona un método de pago válido.")
+    .required("El método de pago es obligatorio."),
   productos: yup
     .array()
     .of(
       yup.object({
         nombreProducto: yup
           .string()
-          .required('El nombre del producto es obligatorio.')
-          .min(3, 'El nombre del producto debe tener al menos 3 caracteres.')
-          .max(100, 'El nombre del producto no puede superar los 100 caracteres.'),
+          .required("El nombre del producto es obligatorio.")
+          .min(3, "El nombre del producto debe tener al menos 3 caracteres.")
+          .max(100, "El nombre del producto no puede superar los 100 caracteres."),
         cantidad: yup
           .number()
-          .typeError('La cantidad debe ser un valor numérico.')
-          .required('La cantidad es obligatoria.')
-          .moreThan(0, 'La cantidad debe ser mayor que 0.'),
+          .typeError("La cantidad debe ser un valor numérico.")
+          .required("La cantidad es obligatoria.")
+          .moreThan(0, "La cantidad debe ser mayor que 0."),
         precio: yup
           .number()
-          .typeError('El precio debe ser un valor numérico.')
-          .required('El precio es obligatorio.')
-          .moreThan(0, 'El precio debe ser mayor que 0.'),
+          .typeError("El precio debe ser un valor numérico.")
+          .required("El precio es obligatorio.")
+          .moreThan(0, "El precio debe ser mayor que 0."),
       }),
     )
-    .min(1, 'Debe existir al menos una línea de producto.'),
-})
+    .min(1, "Debe existir al menos una línea de producto."),
+});
 
 const initialValues: PedidoForm = {
-  nombreCompleto: '',
-  correo: '',
-  metodoPago: '',
-  productos: [{ nombreProducto: '', cantidad: '', precio: '' }],
-}
+  nombreCompleto: "",
+  correo: "",
+  metodoPago: "",
+  productos: [{ nombreProducto: "", cantidad: "", precio: "" }],
+};
 
 const { handleSubmit, meta, isSubmitting } = useForm({
   validationSchema: schema,
   initialValues,
-})
+});
 
 const toNumber = (value: number | string): number => {
-  const parsed = Number(value)
-  return Number.isFinite(parsed) ? parsed : 0
-}
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
 
-const roundMoney = (value: number): number => Number(value.toFixed(2))
+const roundMoney = (value: number): number => Number(value.toFixed(2));
 
 const onSubmit: SubmissionHandler<GenericObject> = (values): void => {
-  const pedido = values as PedidoForm
+  const pedido = values as PedidoForm;
 
   const productosConTotal = pedido.productos.map((producto) => {
-    const totalProducto = roundMoney(toNumber(producto.cantidad) * toNumber(producto.precio))
+    const totalProducto = roundMoney(toNumber(producto.cantidad) * toNumber(producto.precio));
 
     return {
       ...producto,
       cantidad: toNumber(producto.cantidad),
       precio: toNumber(producto.precio),
       totalProducto,
-    }
-  })
+    };
+  });
 
   const totalPedido = roundMoney(
     productosConTotal.reduce((acumulado, producto) => acumulado + producto.totalProducto, 0),
-  )
+  );
 
-  console.log('Pedido enviado:', {
+  console.log("Pedido enviado:", {
     ...pedido,
     productos: productosConTotal,
     totalPedido,
-  })
-}
+  });
+};
 
-const submitForm = handleSubmit(onSubmit)
+const submitForm = handleSubmit(onSubmit);
 </script>
 
 <template>

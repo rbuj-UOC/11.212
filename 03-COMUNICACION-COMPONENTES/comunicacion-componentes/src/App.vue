@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import CounterComponent from './components/CounterComponent.vue'
-import { ref } from 'vue'
+import CounterComponent from "./components/CounterComponent.vue";
+import { ref } from "vue";
 
-const last = ref(0)
+const last = ref(0);
 </script>
 
 <template>

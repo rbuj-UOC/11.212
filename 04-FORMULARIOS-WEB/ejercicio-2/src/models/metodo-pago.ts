@@ -1,1 +1,1 @@
-export type MetodoPago = 'Tarjeta' | 'Transferencia' | 'Bizum'
+export type MetodoPago = "Tarjeta" | "Transferencia" | "Bizum";

@@ -1,4 +1,4 @@
-import { computed, type Ref } from 'vue';
+import { computed, type Ref } from "vue";
 
 export function useCounterMath(count: Ref<number>) {
   const square = computed(() => count.value * count.value);

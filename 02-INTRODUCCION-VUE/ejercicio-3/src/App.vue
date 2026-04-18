@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Footer from './components/Footer.vue'
-import Header from './components/Header.vue'
-import Container from './components/Container.vue'
-import movies from './data/movies.json'
+import Footer from "./components/Footer.vue";
+import Header from "./components/Header.vue";
+import Container from "./components/Container.vue";
+import movies from "./data/movies.json";
 </script>
 
 <template>
@@ -19,7 +19,7 @@ import movies from './data/movies.json'
 :global(body) {
   min-width: 320px;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #0a0f1d;
   color: #f8fafc;
 }

@@ -1,43 +1,43 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import * as yup from 'yup'
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 
 const validationSchema = yup.object({
   fullName: yup
     .string()
-    .required('El nombre completo es obligatorio.')
-    .min(3, 'El nombre completo debe tener al menos 3 caracteres.')
-    .max(100, 'El nombre completo no puede superar los 100 caracteres.'),
+    .required("El nombre completo es obligatorio.")
+    .min(3, "El nombre completo debe tener al menos 3 caracteres.")
+    .max(100, "El nombre completo no puede superar los 100 caracteres."),
   email: yup
     .string()
-    .required('El correo electrónico es obligatorio.')
-    .email('Introduce un correo electrónico válido.'),
-  subject: yup.string().required('El asunto es obligatorio.'),
+    .required("El correo electrónico es obligatorio.")
+    .email("Introduce un correo electrónico válido."),
+  subject: yup.string().required("El asunto es obligatorio."),
   message: yup
     .string()
-    .required('El mensaje es obligatorio.')
-    .min(20, 'El mensaje debe tener al menos 20 caracteres.'),
-})
+    .required("El mensaje es obligatorio.")
+    .min(20, "El mensaje debe tener al menos 20 caracteres."),
+});
 
 const { handleSubmit, defineField, errors, meta } = useForm({
   validationSchema,
   initialValues: {
-    fullName: '',
-    email: '',
-    subject: '',
-    message: '',
+    fullName: "",
+    email: "",
+    subject: "",
+    message: "",
   },
   validateOnMount: true,
-})
+});
 
-const [fullName, fullNameAttrs] = defineField('fullName')
-const [email, emailAttrs] = defineField('email')
-const [subject, subjectAttrs] = defineField('subject')
-const [message, messageAttrs] = defineField('message')
+const [fullName, fullNameAttrs] = defineField("fullName");
+const [email, emailAttrs] = defineField("email");
+const [subject, subjectAttrs] = defineField("subject");
+const [message, messageAttrs] = defineField("message");
 
 const onSubmit = handleSubmit((values) => {
-  console.log('Formulario de contacto enviado:', values)
-})
+  console.log("Formulario de contacto enviado:", values);
+});
 </script>
 
 <template>

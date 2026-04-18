@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Songs } from '../models/song.interface'
+import type { Songs } from "../models/song.interface";
 
 defineProps<{
-  song: Songs
-}>()
+  song: Songs;
+}>();
 </script>
 
 <template>

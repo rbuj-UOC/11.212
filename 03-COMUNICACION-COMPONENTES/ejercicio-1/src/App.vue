@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import AlertComponent from '@/components/AlertComponent.vue'
-import type { AlertProps } from '@/models/alert-props.interface'
+import { ref } from "vue";
+import AlertComponent from "@/components/AlertComponent.vue";
+import type { AlertProps } from "@/models/alert-props.interface";
 
-const alertVisible = ref(false)
-const alertKey = ref(0)
+const alertVisible = ref(false);
+const alertKey = ref(0);
 const currentAlert = ref<AlertProps>({
-  message: '',
-  type: 'success',
+  message: "",
+  type: "success",
   duration: 4000,
-})
+});
 
-const showAlert = (type: NonNullable<AlertProps['type']>, message: string) => {
-  alertVisible.value = false
-  currentAlert.value = { message, type, duration: 4000 }
-  alertKey.value += 1
-  alertVisible.value = true
-}
+const showAlert = (type: NonNullable<AlertProps["type"]>, message: string) => {
+  alertVisible.value = false;
+  currentAlert.value = { message, type, duration: 4000 };
+  alertKey.value += 1;
+  alertVisible.value = true;
+};
 </script>
 
 <template>

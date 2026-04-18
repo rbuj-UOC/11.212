@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { reactive, watch } from 'vue'
-import { useSignUpValidation } from '@/composables/useSignUpValidation'
-import type { UserRegistration } from '@/models/user.interface'
+import { reactive, watch } from "vue";
+import { useSignUpValidation } from "@/composables/useSignUpValidation";
+import type { UserRegistration } from "@/models/user.interface";
 
 const props = defineProps<{
-  disabled?: boolean
-  resetKey: number
-}>()
+  disabled?: boolean;
+  resetKey: number;
+}>();
 
 const emit = defineEmits<{
-  submit: [payload: UserRegistration]
-}>()
+  submit: [payload: UserRegistration];
+}>();
 
 const form = reactive<UserRegistration>({
-  name: '',
-  email: '',
-  password: '',
-})
+  name: "",
+  email: "",
+  password: "",
+});
 
 const {
   errors,
@@ -27,35 +27,35 @@ const {
   touchField,
   touchAll,
   resetValidation,
-} = useSignUpValidation(form)
+} = useSignUpValidation(form);
 
 function clearForm() {
-  form.name = ''
-  form.email = ''
-  form.password = ''
+  form.name = "";
+  form.email = "";
+  form.password = "";
 }
 
 function handleSubmit() {
-  touchAll()
+  touchAll();
 
   if (!isFormValid.value || props.disabled) {
-    return
+    return;
   }
 
-  emit('submit', {
+  emit("submit", {
     name: form.name.trim(),
     email: form.email.trim(),
     password: form.password,
-  })
+  });
 }
 
 watch(
   () => props.resetKey,
   () => {
-    clearForm()
-    resetValidation()
+    clearForm();
+    resetValidation();
   },
-)
+);
 </script>
 
 <template>
@@ -112,7 +112,7 @@ watch(
       :class="disabled ? 'btn-secondary' : 'btn-primary'"
       :disabled="disabled || !isFormValid"
     >
-      {{ disabled ? 'Ya registrado' : 'Regístrate' }}
+      {{ disabled ? "Ya registrado" : "Regístrate" }}
     </button>
 
     <div v-if="errors.length" class="alert alert-danger mt-3 mb-0" role="alert">
@@ -131,7 +131,7 @@ watch(
 }
 
 .required-field::after {
-  content: ' *';
+  content: " *";
   color: #dc3545;
 }
 </style>

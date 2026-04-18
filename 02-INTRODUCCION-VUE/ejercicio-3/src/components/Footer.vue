@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'PageFooter' })
+defineOptions({ name: "PageFooter" });
 </script>
 
 <template>

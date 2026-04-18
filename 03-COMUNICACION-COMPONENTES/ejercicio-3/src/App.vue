@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AppHeader from './components/Header.vue'
-import SongListContainer from './components/SongListContainer.vue'
-import AppFooter from './components/Footer.vue'
+import AppHeader from "./components/Header.vue";
+import SongListContainer from "./components/SongListContainer.vue";
+import AppFooter from "./components/Footer.vue";
 </script>
 
 <template>

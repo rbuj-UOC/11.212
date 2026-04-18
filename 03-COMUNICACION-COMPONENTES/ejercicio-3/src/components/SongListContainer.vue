@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import songsData from '../data/songs.json'
-import type { Songs } from '../models/song.interface'
-import SongItem from './SongItem.vue'
+import { computed, ref } from "vue";
+import songsData from "../data/songs.json";
+import type { Songs } from "../models/song.interface";
+import SongItem from "./SongItem.vue";
 
-const songs = songsData as Songs[]
-const showOnlyTopHits = ref(false)
+const songs = songsData as Songs[];
+const showOnlyTopHits = ref(false);
 
 const visibleSongs = computed(() => {
   if (!showOnlyTopHits.value) {
-    return songs
+    return songs;
   }
 
-  return songs.filter((song) => song.isTopHit)
-})
+  return songs.filter((song) => song.isTopHit);
+});
 
-const buttonLabel = computed(() => (showOnlyTopHits.value ? 'Mostrar todo' : 'Éxitos'))
+const buttonLabel = computed(() => (showOnlyTopHits.value ? "Mostrar todo" : "Éxitos"));
 
 const toggleTopHits = () => {
-  showOnlyTopHits.value = !showOnlyTopHits.value
-}
+  showOnlyTopHits.value = !showOnlyTopHits.value;
+};
 </script>
 
 <template>

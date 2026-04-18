@@ -1,45 +1,45 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import type { AlertProps } from '@/models/alert-props.interface'
+import { onMounted, onUnmounted, ref } from "vue";
+import type { AlertProps } from "@/models/alert-props.interface";
 
 const props = withDefaults(defineProps<AlertProps>(), {
-  type: 'success',
+  type: "success",
   duration: 3000,
-})
+});
 
 const emit = defineEmits<{
-  close: []
-}>()
+  close: [];
+}>();
 
-const visible = ref(true)
-let closeTimer: ReturnType<typeof setTimeout> | null = null
+const visible = ref(true);
+let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
 const closeAlert = () => {
   if (!visible.value) {
-    return
+    return;
   }
 
   if (closeTimer) {
-    clearTimeout(closeTimer)
-    closeTimer = null
+    clearTimeout(closeTimer);
+    closeTimer = null;
   }
 
-  visible.value = false
-  setTimeout(() => emit('close'), 150)
-}
+  visible.value = false;
+  setTimeout(() => emit("close"), 150);
+};
 
 onMounted(() => {
   closeTimer = setTimeout(() => {
-    closeAlert()
-  }, props.duration)
-})
+    closeAlert();
+  }, props.duration);
+});
 
 onUnmounted(() => {
   if (closeTimer) {
-    clearTimeout(closeTimer)
-    closeTimer = null
+    clearTimeout(closeTimer);
+    closeTimer = null;
   }
-})
+});
 </script>
 
 <template>
@@ -80,7 +80,7 @@ onUnmounted(() => {
 }
 
 .alert-with-accent::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -129,14 +129,14 @@ onUnmounted(() => {
 }
 
 .alert-type-success .alert-icon::before {
-  content: '✔';
+  content: "✔";
 }
 
 .alert-type-warning .alert-icon::before {
-  content: '⚠';
+  content: "⚠";
 }
 
 .alert-type-error .alert-icon::before {
-  content: '✖';
+  content: "✖";
 }
 </style>

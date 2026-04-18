@@ -16,27 +16,27 @@
 </template>
 
 <script setup lang="ts">
-import { useCounterMath } from '@/composables/useCounterMath'
-import type { CounterProps } from '@/models/counter-props.interface'
-import { ref, watch } from 'vue'
+import { useCounterMath } from "@/composables/useCounterMath";
+import type { CounterProps } from "@/models/counter-props.interface";
+import { ref, watch } from "vue";
 
-const props = withDefaults(defineProps<CounterProps>(), { initial: 0, step: 1 })
+const props = withDefaults(defineProps<CounterProps>(), { initial: 0, step: 1 });
 
-const emit = defineEmits<{ (e: 'update', value: number): void }>()
+const emit = defineEmits<{ (e: "update", value: number): void }>();
 
-const count = ref<number>(props.initial)
+const count = ref<number>(props.initial);
 
 function increment() {
-  count.value += props.step
+  count.value += props.step;
 }
 
 function decrement() {
-  count.value -= props.step
+  count.value -= props.step;
 }
 
-watch(count, (v) => emit('update', v))
+watch(count, (v) => emit("update", v));
 
-const { square, factorial } = useCounterMath(count)
+const { square, factorial } = useCounterMath(count);
 </script>
 
 <style scoped>

@@ -114,8 +114,8 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import * as yup from 'yup'
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 
 // Esquema de validación
 const schema = yup.object({
@@ -124,50 +124,50 @@ const schema = yup.object({
   password: yup.string().required().min(8),
   confirm: yup
     .string()
-    .oneOf([yup.ref('password')], 'Las contraseñas no coinciden')
+    .oneOf([yup.ref("password")], "Las contraseñas no coinciden")
     .required(),
-  country: yup.string().required('Selecciona un país'),
+  country: yup.string().required("Selecciona un país"),
   birthdate: yup
     .date()
-    .typeError('Introduce una fecha válida')
-    .required('La fecha de nacimiento es obligatoria')
-    .max(new Date(), 'La fecha no puede ser futura'),
+    .typeError("Introduce una fecha válida")
+    .required("La fecha de nacimiento es obligatoria")
+    .max(new Date(), "La fecha no puede ser futura"),
   age: yup
     .number()
-    .typeError('Introduce un número válido')
-    .required('La edad es obligatoria')
-    .min(0, 'La edad no puede ser negativa')
-    .max(120, 'Introduce una edad realista'),
-})
+    .typeError("Introduce un número válido")
+    .required("La edad es obligatoria")
+    .min(0, "La edad no puede ser negativa")
+    .max(120, "Introduce una edad realista"),
+});
 
 // Valores iniciales
 const initialValues = {
-  name: '',
-  email: '',
-  password: '',
-  confirm: '',
-  country: 'es',
-  birthdate: '',
-  age: '',
-}
+  name: "",
+  email: "",
+  password: "",
+  confirm: "",
+  country: "es",
+  birthdate: "",
+  age: "",
+};
 
 const { values, errors, meta, defineField } = useForm({
   validationSchema: schema,
   initialValues,
-})
+});
 
 // Campos
-const [name, nameAttrs] = defineField('name')
-const [email, emailAttrs] = defineField('email')
-const [password, passwordAttrs] = defineField('password')
-const [confirm, confirmAttrs] = defineField('confirm')
-const [country, countryAttrs] = defineField('country')
-const [birthdate, birthdateAttrs] = defineField('birthdate')
-const [age, ageAttrs] = defineField('age')
+const [name, nameAttrs] = defineField("name");
+const [email, emailAttrs] = defineField("email");
+const [password, passwordAttrs] = defineField("password");
+const [confirm, confirmAttrs] = defineField("confirm");
+const [country, countryAttrs] = defineField("country");
+const [birthdate, birthdateAttrs] = defineField("birthdate");
+const [age, ageAttrs] = defineField("age");
 
 // Submit simulado
 function onSubmit() {
-  console.log('REGISTER payload: ', JSON.stringify(values))
+  console.log("REGISTER payload: ", JSON.stringify(values));
 }
 </script>
 

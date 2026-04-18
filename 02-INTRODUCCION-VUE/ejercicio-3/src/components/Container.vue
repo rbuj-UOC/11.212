@@ -1,41 +1,43 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import type { Movie } from '../models/movie.interface'
+import { computed, ref } from "vue";
+import type { Movie } from "../models/movie.interface";
 
-defineOptions({ name: 'MoviesContainer' })
+defineOptions({ name: "MoviesContainer" });
 
 const props = defineProps<{
-  movies: Movie[]
-}>()
+  movies: Movie[];
+}>();
 
-const showInTheaters = ref(false)
+const showInTheaters = ref(false);
 
 const visibleMovies = computed(() =>
   showInTheaters.value ? props.movies.filter((movie) => movie.inTheaters) : props.movies,
-)
+);
 
-const totalMovies = computed(() => props.movies.length)
+const totalMovies = computed(() => props.movies.length);
 
 const counterText = computed(() => {
   if (showInTheaters.value) {
-    return `Mostrando ${visibleMovies.value.length} películas en cines (de ${totalMovies.value} totales)`
+    return `Mostrando ${visibleMovies.value.length} películas en cines (de ${totalMovies.value} totales)`;
   }
 
-  return `Mostrando un total de ${totalMovies.value} películas`
-})
+  return `Mostrando un total de ${totalMovies.value} películas`;
+});
 
-const buttonText = computed(() => (showInTheaters.value ? 'Mostrar todas' : 'En cines'))
+const buttonText = computed(() => (showInTheaters.value ? "Mostrar todas" : "En cines"));
 
-const ratingLabel = (rating: number) => '★'.repeat(rating) + '☆'.repeat(Math.max(0, 5 - rating))
+const ratingLabel = (rating: number) => "★".repeat(rating) + "☆".repeat(Math.max(0, 5 - rating));
 
 const toggleFilter = () => {
-  showInTheaters.value = !showInTheaters.value
-}
+  showInTheaters.value = !showInTheaters.value;
+};
 </script>
 
 <template>
   <section class="container pt-2 pt-md-3 pb-4 pb-md-5">
-    <div class="catalog-toolbar d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between mb-4">
+    <div
+      class="catalog-toolbar d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between mb-4"
+    >
       <button class="btn btn-warning fw-semibold px-4 py-2" @click="toggleFilter">
         {{ buttonText }}
       </button>
@@ -46,7 +48,12 @@ const toggleFilter = () => {
       <article v-for="movie in visibleMovies" :key="movie.id" class="col-12 col-sm-6 col-lg-4">
         <div class="card movie-card h-100 border-0">
           <div class="poster-wrapper">
-            <img class="card-img-top poster-image" :src="movie.image" :alt="movie.name" loading="lazy" />
+            <img
+              class="card-img-top poster-image"
+              :src="movie.image"
+              :alt="movie.name"
+              loading="lazy"
+            />
             <span class="badge rounded-pill text-bg-dark movie-year">{{ movie.year }}</span>
           </div>
 
@@ -64,8 +71,11 @@ const toggleFilter = () => {
               </span>
             </div>
 
-            <p class="fw-semibold mt-3 mb-0" :class="movie.inTheaters ? 'text-success' : 'text-danger'">
-              {{ movie.inTheaters ? 'Disponible en cines' : 'Fuera de cines' }}
+            <p
+              class="fw-semibold mt-3 mb-0"
+              :class="movie.inTheaters ? 'text-success' : 'text-danger'"
+            >
+              {{ movie.inTheaters ? "Disponible en cines" : "Fuera de cines" }}
             </p>
           </div>
         </div>

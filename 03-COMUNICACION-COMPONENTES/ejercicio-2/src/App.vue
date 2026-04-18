@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import SignUpForm from '@/components/SignUpForm.vue'
-import type { UserRegistration } from '@/models/user.interface'
+import { ref } from "vue";
+import SignUpForm from "@/components/SignUpForm.vue";
+import type { UserRegistration } from "@/models/user.interface";
 
-const registeredUser = ref<UserRegistration | null>(null)
-const resetKey = ref(0)
+const registeredUser = ref<UserRegistration | null>(null);
+const resetKey = ref(0);
 
 function handleRegister(payload: UserRegistration) {
-  registeredUser.value = payload
+  registeredUser.value = payload;
 }
 
 function handleNewRegistration() {
-  registeredUser.value = null
-  resetKey.value += 1
+  registeredUser.value = null;
+  resetKey.value += 1;
 }
 </script>
 

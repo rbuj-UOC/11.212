@@ -22,21 +22,21 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import * as yup from 'yup'
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 
 const schema = yup.object({
   email: yup.string().required().email(),
-})
+});
 
 const { values, errors, meta, defineField } = useForm({
   validationSchema: schema,
-})
+});
 
-const [email, emailAttrs] = defineField('email')
+const [email, emailAttrs] = defineField("email");
 
 function onSubmit() {
-  console.log('Submit:', JSON.stringify(values))
+  console.log("Submit:", JSON.stringify(values));
 }
 </script>
 
