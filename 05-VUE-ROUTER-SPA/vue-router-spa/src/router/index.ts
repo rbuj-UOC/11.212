@@ -18,6 +18,10 @@ const router = createRouter({
       name: "contact",
       component: () => import("@/modules/landing/pages/ContactPage.vue"),
     },
+    {
+      path: "/auth",
+      component: () => import("@/modules/auth/pages/LoginPage.vue"),
+    },
   ],
 });
 
