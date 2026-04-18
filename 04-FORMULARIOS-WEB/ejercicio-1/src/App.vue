@@ -1,11 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import RegisterForm from './components/RegisterForm.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <main class="contact-page d-flex align-items-start py-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xl-8">
+          <h1 class="display-6 fw-bold text-center text-primary mb-4">Formulario de contacto</h1>
+          <RegisterForm />
+        </div>
+      </div>
+    </div>
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.contact-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+</style>
