@@ -14,9 +14,10 @@
     />
     <p v-if="errors.email" id="email-error" class="error">{{ errors.email }}</p>
 
-    <button class="btn" type="submit">Enviar</button>
+    <button class="btn" type="submit" :disabled="!meta.valid">Enviar</button>
     <pre>{{ values }}</pre>
     <pre>{{ errors }}</pre>
+    <pre>{{ meta }}</pre>
   </form>
 </template>
 
@@ -28,7 +29,7 @@ const schema = yup.object({
   email: yup.string().required().email(),
 })
 
-const { values, errors, defineField } = useForm({
+const { values, errors, meta, defineField } = useForm({
   validationSchema: schema,
 })
 
