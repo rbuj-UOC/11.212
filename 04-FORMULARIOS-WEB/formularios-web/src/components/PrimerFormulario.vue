@@ -5,13 +5,22 @@
     <input type="text" v-model="email" v-bind="emailAttrs" placeholder="tu@email.com" />
     <button class="btn" type="submit">Enviar</button>
     <pre>{{ values }}</pre>
+    <pre>{{ errors }}</pre>
   </form>
 </template>
 
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
+import * as yup from 'yup'
 
-const { values, defineField } = useForm()
+const schema = yup.object({
+  email: yup.string().required().email(),
+})
+
+const { values, errors, defineField } = useForm({
+  validationSchema: schema,
+})
+
 const [email, emailAttrs] = defineField('email')
 
 function onSubmit() {
@@ -25,5 +34,11 @@ function onSubmit() {
   border: 1px solid #eee;
   border-radius: 0.75rem;
   padding: 1rem;
+}
+
+pre {
+  background: #f7f7f7;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 </style>
