@@ -1,10 +1,17 @@
 <template>
   <section class="card">
     <h2>Primer formulario</h2>
+    <input type="text" v-model="email" v-bind="emailAttrs" placeholder="tu@email.com" />
+    <pre>{{ values }}</pre>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useForm } from 'vee-validate'
+
+const { values, defineField } = useForm()
+const [email, emailAttrs] = defineField('email')
+</script>
 
 <style scoped>
 .card {
