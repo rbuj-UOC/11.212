@@ -4,10 +4,10 @@ export interface Task {
 }
 
 export async function getTasks(): Promise<Task[]> {
-  const response = await fetch('https://api.ejemplo.com/tasks');
+  const response = await fetch("https://api.ejemplo.com/tasks");
 
   if (!response.ok) {
-    throw new Error('Error al obtener las tareas');
+    throw new Error("Error al obtener las tareas");
   }
 
   return response.json();

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sumar } from "@/utils/math";
+import { sumar } from "../../utils/math";
 
 describe("función sumar", () => {
   it("debería devolver la suma de dos números positivos", () => {

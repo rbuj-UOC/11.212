@@ -1,9 +1,14 @@
-<script setup lang="ts">
-import CounterFactorial from "./components/CounterFactorial.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <CounterFactorial />
+  <div>
+    <nav>
+      <RouterLink to="/" data-test="link-home">Inicio</RouterLink>
+      <RouterLink to="/about" data-test="link-about">About</RouterLink>
+    </nav>
+
+    <RouterView />
+  </div>
 </template>
 
 <style scoped></style>

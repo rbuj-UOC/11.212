@@ -1,12 +1,12 @@
-import { describe, it, expect, vi } from 'vitest';
-import { getTasks } from '@/services/taskService';
+import { describe, it, expect, vi } from "vitest";
+import { getTasks } from "@/services/taskService";
 
-describe('taskService.ts', () => {
-  it('debería devolver la lista de tareas cuando la respuesta es correcta', async () => {
+describe("taskService.ts", () => {
+  it("debería devolver la lista de tareas cuando la respuesta es correcta", async () => {
     // Arrange (Preparar)
     const tareasMock: Task = [
-      { id: 1, title: 'Aprender Vue' },
-      { id: 2, title: 'Aprender Testing' },
+      { id: 1, title: "Aprender Vue" },
+      { id: 2, title: "Aprender Testing" },
     ];
 
     global.fetch = vi.fn(() =>
@@ -24,7 +24,7 @@ describe('taskService.ts', () => {
     expect(fetch).toHaveBeenCalledOnce();
   });
 
-  it('debería lanzar un error cuando la respuesta del servidor falla', async () => {
+  it("debería lanzar un error cuando la respuesta del servidor falla", async () => {
     // Arrange
     global.fetch = vi.fn(() =>
       Promise.resolve({
@@ -33,6 +33,6 @@ describe('taskService.ts', () => {
     );
 
     // Act & Assert
-    await expect(getTasks()).rejects.toThrow('Error al obtener las tareas');
+    await expect(getTasks()).rejects.toThrow("Error al obtener las tareas");
   });
 });
