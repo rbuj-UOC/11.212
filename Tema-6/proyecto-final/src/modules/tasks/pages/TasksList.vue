@@ -11,7 +11,7 @@ import {
   deleteAllCompletedTasks,
   getTasks,
 } from "@/modules/tasks/services/tasks.service";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
 const toast = useToast();
@@ -19,6 +19,67 @@ const toast = useToast();
 const tasks = ref<Task[]>([]);
 const loading = ref(false);
 const error = ref<string | null>(null);
+const filterText = ref("");
+const sortField = ref<"dueDate" | "priority" | null>(null);
+const sortDirection = ref<"asc" | "desc">("asc");
+const cardView = ref(false);
+
+const priorityWeight: Record<TaskPriority, number> = {
+  low: 1,
+  medium: 2,
+  high: 3,
+};
+
+const visibleTasks = computed(() => {
+  let result = [...tasks.value];
+  const term = filterText.value.trim().toLowerCase();
+
+  if (term) {
+    result = result.filter((task) => {
+      return (
+        task.name.toLowerCase().includes(term) || task.description.toLowerCase().includes(term)
+      );
+    });
+  }
+
+  if (sortField.value === "dueDate") {
+    result.sort((a, b) => {
+      const diff = new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      return sortDirection.value === "asc" ? diff : -diff;
+    });
+  }
+
+  if (sortField.value === "priority") {
+    result.sort((a, b) => {
+      const diff = priorityWeight[a.priority] - priorityWeight[b.priority];
+      return sortDirection.value === "asc" ? diff : -diff;
+    });
+  }
+
+  return result;
+});
+
+const viewButtonLabel = computed(() => (cardView.value ? "Vista lista" : "Vista tarjetas"));
+
+function toggleSort(field: "dueDate" | "priority") {
+  if (sortField.value === field) {
+    sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
+    return;
+  }
+
+  sortField.value = field;
+  sortDirection.value = "asc";
+}
+
+function clearSort() {
+  sortField.value = null;
+  sortDirection.value = "asc";
+}
+
+function sortArrow(field: "dueDate" | "priority") {
+  if (sortField.value !== field) return "";
+  return sortDirection.value === "asc" ? "up" : "down";
+}
 
 async function loadTasks() {
   loading.value = true;
@@ -117,6 +178,67 @@ onMounted(loadTasks);
       </button>
     </div>
 
+    <div class="card border-0 shadow-sm mb-3">
+      <div class="card-body">
+        <div class="row g-2 align-items-end">
+          <div class="col-12 col-md-5">
+            <label for="task-filter" class="form-label small text-muted mb-1"
+              >Filtrar por nombre o descripcion</label
+            >
+            <input
+              id="task-filter"
+              v-model="filterText"
+              type="search"
+              class="form-control"
+              placeholder="Escribe para filtrar tareas..."
+              :disabled="loading"
+            />
+          </div>
+
+          <div class="col-12 col-md-7">
+            <div class="d-flex flex-wrap gap-2 justify-content-md-end">
+              <button
+                class="btn btn-sm btn-outline-dark"
+                :disabled="loading"
+                @click="toggleSort('dueDate')"
+              >
+                Fecha
+                <span v-if="sortArrow('dueDate') === 'up'">&uarr;</span>
+                <span v-else-if="sortArrow('dueDate') === 'down'">&darr;</span>
+              </button>
+
+              <button
+                class="btn btn-sm btn-outline-dark"
+                :disabled="loading"
+                @click="toggleSort('priority')"
+              >
+                Prioridad
+                <span v-if="sortArrow('priority') === 'up'">&uarr;</span>
+                <span v-else-if="sortArrow('priority') === 'down'">&darr;</span>
+              </button>
+
+              <button
+                v-if="sortField"
+                class="btn btn-sm btn-outline-warning"
+                :disabled="loading"
+                @click="clearSort"
+              >
+                Limpiar orden
+              </button>
+
+              <button
+                class="btn btn-sm btn-outline-primary"
+                :disabled="loading"
+                @click="cardView = !cardView"
+              >
+                {{ viewButtonLabel }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div v-if="loading" class="text-center py-4">
       <div class="spinner-border" role="status"></div>
     </div>
@@ -125,9 +247,9 @@ onMounted(loadTasks);
       {{ error }}
     </div>
 
-    <div v-if="!loading && tasks.length" class="list-group">
+    <div v-if="!loading && visibleTasks.length && !cardView" class="list-group">
       <RouterLink
-        v-for="task in tasks"
+        v-for="task in visibleTasks"
         :key="task.id"
         :to="{ name: 'task-detail', params: { id: task.id } }"
         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
@@ -163,6 +285,46 @@ onMounted(loadTasks);
       </RouterLink>
     </div>
 
-    <p v-if="!loading && tasks.length === 0" class="text-muted">No tienes tareas todavía.</p>
+    <div v-if="!loading && visibleTasks.length && cardView" class="row g-3">
+      <div v-for="task in visibleTasks" :key="task.id" class="col-12 col-md-6 col-xl-4">
+        <RouterLink
+          :to="{ name: 'task-detail', params: { id: task.id } }"
+          class="card h-100 shadow-sm text-decoration-none text-body"
+        >
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge" :class="task.completed ? 'bg-success' : 'bg-warning text-dark'">
+                {{ task.completed ? "Hecha" : "Pendiente" }}
+              </span>
+
+              <span class="badge" :class="priorityBadge(task.priority)">
+                {{ task.priority }}
+              </span>
+            </div>
+
+            <h2 class="h6 fw-semibold mb-2">{{ task.name }}</h2>
+            <p class="text-muted small mb-3">{{ task.description }}</p>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+              <small class="text-muted">{{ new Date(task.dueDate).toLocaleDateString() }}</small>
+
+              <button
+                v-if="!task.completed"
+                class="btn btn-sm btn-outline-success"
+                @click.prevent="onCompleteTask(task.id)"
+                title="Completar"
+              >
+                ✓
+              </button>
+            </div>
+          </div>
+        </RouterLink>
+      </div>
+    </div>
+
+    <p v-if="!loading && tasks.length === 0" class="text-muted">No tienes tareas todavia.</p>
+    <p v-if="!loading && tasks.length > 0 && visibleTasks.length === 0" class="text-muted">
+      No hay tareas que coincidan con el filtro.
+    </p>
   </section>
 </template>

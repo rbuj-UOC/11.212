@@ -1,21 +1,10 @@
 <script setup lang="ts">
-import { useToast } from "@/common/composables/useToast";
-import { clearAuth, isAuthenticated } from "@/modules/auth/utils/token";
 import { computed } from "vue";
-import { RouterLink, useRouter } from "vue-router";
-
-const router = useRouter();
-
-const toast = useToast();
+import { RouterLink } from "vue-router";
+import { isAuthenticated } from "@/modules/auth/utils/token";
 
 // Recalcula al cambiar de ruta (login/logout provocan navegación)
 const isLoggedIn = computed(() => isAuthenticated());
-
-function logout() {
-  clearAuth();
-  toast.info("Sesión cerrada");
-  router.push("/login");
-}
 </script>
 
 <template>
@@ -49,6 +38,12 @@ function logout() {
             <RouterLink to="/tasks" class="nav-link" exact-active-class="active">Tasks</RouterLink>
           </li>
 
+          <li v-if="isLoggedIn" class="nav-item">
+            <RouterLink to="/profile" class="nav-link" exact-active-class="active"
+              >Perfil</RouterLink
+            >
+          </li>
+
           <li class="nav-item">
             <RouterLink to="/about" class="nav-link" exact-active-class="active">About</RouterLink>
           </li>
@@ -70,13 +65,6 @@ function logout() {
               <RouterLink to="/register" class="btn btn-primary btn-sm">Register</RouterLink>
             </li>
           </template>
-
-          <!-- Si está logueado: Logout -->
-          <li v-else class="nav-item ms-lg-2">
-            <button class="btn btn-outline-danger btn-sm" type="button" @click="logout">
-              Cerrar sesión
-            </button>
-          </li>
         </ul>
       </nav>
     </div>

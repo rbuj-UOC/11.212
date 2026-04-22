@@ -1,4 +1,5 @@
 import { authRoutes } from "@/modules/auth/routes";
+import { authGuard } from "@/modules/auth/guards/authGuard";
 import HomePage from "@/modules/landing/pages/HomePage.vue";
 import { tasksChildRoutes } from "@/modules/tasks/routes";
 import { createRouter, createWebHistory } from "vue-router";
@@ -23,6 +24,12 @@ const router = createRouter({
           path: "/contact",
           name: "contact",
           component: () => import("@/modules/landing/pages/ContactPage.vue"),
+        },
+        {
+          path: "/profile",
+          name: "profile",
+          component: () => import("@/modules/auth/pages/ProfilePage.vue"),
+          beforeEnter: [authGuard],
         },
         ...tasksChildRoutes,
       ],
